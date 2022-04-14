@@ -1,0 +1,167 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  font-family: "Space Mono", monospace;
+  list-style: none;
+}
+body {
+  overflow-x: hidden;
+  background-image: url("https://wallpapertag.com/wallpaper/full/c/2/d/328715-amazing-nasa-wallpaper-1920x1080-image.jpg");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.nav {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(202, 202, 202, 0.767);
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 0 2px 5px 0 black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-height: 20vh;
+  z-index: 100;
+  transition: 0.5s ease;
+}
+.logo {
+  width: 100%;
+  text-align: center;
+}
+.logo img {
+  width: 150px;
+}
+nav {
+  width: 100%;
+}
+nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+nav li {
+  padding: 1rem 0;
+}
+nav a {
+  color: blue;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  height: 90vh;
+  width: 100%;
+  padding: 1rem;
+}
+.image img,
+.iframe {
+  object-fit: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.iframe {
+  z-index: 2;
+}
+
+.textContent {
+  width: 80%;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(202, 202, 202, 0.767);
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  transform: translate(12.5%, 0);
+  transition: 0.5s ease;
+  z-index: 100;
+  overflow-y: scroll;
+}
+
+.showText,
+.showArrow {
+  background: rgba(202, 202, 202, 0.767);
+  width: 100px;
+  height: 50px;
+  border-radius: 1rem 1rem 0 0;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 0 2px 5px black;
+  color: white;
+  transition: 0.5s ease;
+  z-index: 100;
+}
+.showArrow {
+  top: 0;
+  left: 3rem;
+  transform: translate(0, 0);
+  border-radius: 0 0 1rem 1rem;
+}
+
+p {
+  font-size: 1.5vw;
+}
+button {
+  cursor: pointer;
+}
+.hideArrow {
+  background: rgba(146, 146, 146, 0.767);
+  width: 50px;
+  height: 50px;
+  padding: 1rem;
+  border-radius: 100%;
+  display: grid;
+  place-items: center;
+  transition: 0.5s;
+  cursor: pointer;
+  user-select: none;
+}
+.hideArrow:hover {
+  transform: scale(1.05);
+}
+.hidden {
+  visibility: hidden !important;
+  opacity: 0;
+}
+.active {
+  visibility: visible !important;
+  opacity: 1;
+}
+
+@media screen and (max-width: 425px) {
+  p {
+    font-size: 0.75rem;
+  }
+  .textContent {
+    height: 500px;
+  }
+}
