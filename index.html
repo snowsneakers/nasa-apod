@@ -1,43 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <title>NASA APOD</title>
+  </head>
+  <body>
     <main>
-        <section class="container">
-            <div class="showArrow active">
-                <h4>Date</h4>
-            </div>
-            <div class="nav hidden">
-                <div class="logo">
-                    <img src="assets/nasalogo.png" alt="nasa logo">
-                </div>
-                    <nav>
-                        <ul>
-                            <li class="inputList"><input type="date"></li>
-                            <li><button>Get APOD</button></li>
-                        </ul>
-                    </nav>
-                    <div class="hideArrow">
-                        <span>^</span>
-                    </div>
-                </div>
-            <section class="contentContainer">
-
-            </section>
-            <div class="showText hidden">
-                <h4>Show<br> Text</h4>
-            </div>
-        </section>
+      <section class="container">
+        <nav>
+          <ul>
+            <input type="date">
+            <li><button>Get Pic</button></li>
+            <li class="descriptionButton"><a class="showTextButton" href="#showText">See Desciption</a></li>
+          </ul>
+        </nav>
+        <section class="contentContainer"></section>
+      </section>
+      <section class="showText" id="showText"></section>
     </main>
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>

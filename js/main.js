@@ -1,21 +1,7 @@
-const key = "NJqaesjCVQNKOERBZG8LMBpDNy634VD02spHRPZ8";
-const url = `https://api.nasa.gov/planetary/apod?api_key=${key}`;
-console.log(url);
-fetch(url)
-  .then((res) => res.json()) // parse response as JSON
-  .then((data) => {
-    console.log(data);
-    getInfo(data);
-  })
-  .catch((err) => {
-    console.log(`error ${err}`);
-  });
+// on load will show most recent picture
+currentDay();
 
-document.querySelector(".showText").classList.toggle("hidden");
-document.querySelector(".showText").classList.toggle("active");
-document.querySelector(".inputList").classList.toggle("active");
-document.querySelector(".inputList").classList.toggle("hidden");
-
+// when date is selected and get pic is clicked get data and appends it to dom
 let button = document.querySelector("button");
 button.addEventListener("click", () => {
   clear();
@@ -26,21 +12,45 @@ button.addEventListener("click", () => {
   fetch(url)
     .then((res) => res.json()) // parse response as JSON
     .then((data) => {
-      console.log(data);
       getInfo(data);
+      showText(data);
     })
     .catch((err) => {
       console.log(`error ${err}`);
     });
 });
 
+//fetches current days picture
+function currentDay() {
+  const key = "NJqaesjCVQNKOERBZG8LMBpDNy634VD02spHRPZ8";
+  const url = `https://api.nasa.gov/planetary/apod?api_key=${key}`;
+  console.log(url);
+  fetch(url)
+    .then((res) => res.json()) // parse response as JSON
+    .then((data) => {
+      console.log(data);
+      getInfo(data);
+      showText(data);
+    })
+    .catch((err) => {
+      console.log(`error ${err}`);
+    });
+}
+
+//clears image and description
 function clear() {
   const contentContainer = document.querySelector(".contentContainer");
   while (contentContainer.firstChild) {
     contentContainer.removeChild(contentContainer.firstChild);
   }
+
+  const showText = document.querySelector(".showText");
+  while (showText.firstChild) {
+    showText.removeChild(showText.firstChild);
+  }
 }
 
+//appends picture or video to dom
 function getInfo(data) {
   const section = document.createElement("section");
   section.classList.add("content");
@@ -49,11 +59,6 @@ function getInfo(data) {
     section.innerHTML = `
         <div class="image">
                 <img src="${data.hdurl}"></img>
-            <div class="textContent hidden">
-                <h3>${data.title}</h3>
-                <span>${data.date}</span>
-                <p>${data.explanation}</p>
-                </div>
         </div>
     `;
     document.querySelector(".contentContainer").appendChild(section);
@@ -62,38 +67,29 @@ function getInfo(data) {
     section.innerHTML = `
         <div class="image">
             <iframe class="iframe" src="${data.url}" frameborder="0"></iframe>
-                <div class="textContent hidden">
-                    <h3>${data.title}</h3>
-                    <span>${data.date}</span>
-                    <p>${data.explanation}</p>
-                </div>
         </div>
     `;
     document.querySelector(".contentContainer").appendChild(section);
   }
 }
 
-let showTextBtn = document
-  .querySelector(".showText")
-  .addEventListener("click", showText);
-
-function showText() {
-  document.querySelector(".textContent").classList.toggle("active");
-  document.querySelector(".textContent").classList.toggle("hidden");
+// appends description to dom if no copyright is avaliable it appends date
+function showText(data) {
+  if (data.copyright !== undefined) {
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <h3>${data.title}</h3>
+      <p>${data.explanation}</p>
+      <h4>${data.copyright}</h4>
+  `;
+    document.querySelector(".showText").appendChild(div);
+  } else if (data.copyright === undefined) {
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <h3>${data.title}</h3>
+      <p>${data.explanation}</p>
+      <h4>${data.date}</h4>
+  `;
+    document.querySelector(".showText").appendChild(div);
+  }
 }
-
-let hideArrow = document
-  .querySelector(".hideArrow")
-  .addEventListener("click", () => {
-    document.querySelector(".nav").classList.toggle("active");
-    document.querySelector(".nav").classList.toggle("hidden");
-    document.querySelector(".showArrow").classList.toggle("active");
-    document.querySelector(".showArrow").classList.toggle("hidden");
-  });
-
-document.querySelector(".showArrow").addEventListener("click", () => {
-  document.querySelector(".nav").classList.toggle("active");
-  document.querySelector(".nav").classList.toggle("hidden");
-  document.querySelector(".showArrow").classList.toggle("active");
-  document.querySelector(".showArrow").classList.toggle("hidden");
-});
