@@ -3,7 +3,7 @@ Using the NASA Astronomy Picture of the Day API, <a href="https://api.nasa.gov/"
 
 [Click here](https://nasapicofdaysp.netlify.app/) to see NASA's picture of the day.
 
-<img src="#" alt="app demo gif" width="100%"/>
+<img src="https://github.com/snowsneakers/nasa-apod/blob/main/assets/nasaapi.gif?raw=true" alt="app demo gif" width="100%"/>
 
 ## How It's Made:
 
